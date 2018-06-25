@@ -3,14 +3,20 @@ import { Container, Header, Tab, Tabs, TabHeading, Icon, Text } from 'native-bas
 import {View} from 'react-native';
 import Decimal from '../components/Decimal';
 import Binary from '../components/Binary';
+import InfoModal from '../components/InfoModal';
 
 import AppHeader from '../components/Header';
 
-class TabsAdvancedExample extends Component {
+class Home extends Component {
+
+    state = {
+        visible: false
+    }
+
   render () {
     return (
       <Container>
-        <AppHeader />
+        <AppHeader onPress={() => this.setState({visible: true})} />
         <Tabs
           initialPage={0}
           tabBarPosition='bottom'
@@ -22,9 +28,10 @@ class TabsAdvancedExample extends Component {
             <Binary />
           </Tab>
         </Tabs>
+        <InfoModal visible={this.state.visible} outPress={() => this.setState({visible: false})} />
       </Container>
     );
   }
 }
 
-export default TabsAdvancedExample;
+export default Home;

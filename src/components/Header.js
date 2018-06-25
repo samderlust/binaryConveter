@@ -1,16 +1,23 @@
 import React from 'react';
-import { Header, Body, Title } from 'native-base';
+import { Header, Icon, Title, Right, Button, Body } from 'native-base';
 
 import * as color from '../config/color';
 
-const AppHeader = () => (
+const AppHeader = ({ onPress }) => (
   <Header
     style={{
-      backgroundColor: color.primary,
-      flexDirection: 'column',
-      justifyContent: 'center'
+      backgroundColor: color.primary
     }} >
-    <Title>Converter</Title>
+    <Body>
+      <Title style={{ left: '60%', fontSize: 25 }} >Converter</Title>
+    </Body>
+    <Right>
+      <Button
+        onPress={onPress}
+        transparent>
+        <Icon style={{ fontSize: 30 }} type='FontAwesome' name='user-circle' />
+      </Button>
+    </Right>
   </Header>
 );
 

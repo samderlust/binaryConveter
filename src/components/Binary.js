@@ -8,12 +8,13 @@ class Binary extends Component {
   
     state = {
         binary: [],
-        num : 0
+        num : 0,
+        hex: []
     }
 
     inputBinary = (bi) => {
       const binary = [...this.state.binary];
-      binary.push(bi);
+      binary.unshift(bi);
       this.setState({binary}, () => this.binaryToDecimal());
     }
 
@@ -29,11 +30,40 @@ class Binary extends Component {
 
     binaryToDecimal = () => {
       let num = 0;
-      const binary = [...this.state.binary]
-      binary.reverse().map((bi, i) => {
+      this.state.binary.reverse().map((bi, i) => {
         num += bi * Math.pow(2,i)
       })
       this.setState({num});
+    }
+
+    converBinaryToHex () {
+      const hex = [...this.state.hex];
+      //a = binary.length
+      //a-4<0 ? 0 : a-4
+      //user slice a-4, a
+
+    }
+
+    binaryToHex = (num) => {
+      num = Number(num)
+      switch (num) {
+        case 0001: return 1;
+        case 0010: return 2;
+        case 0011: return 3;
+        case 0100: return 4;
+        case 0101: return 5;
+        case 0110: return 6;
+        case 0111: return 7;
+        case 1000: return 8;
+        case 1001: return 9;
+        case 1010: return 'A';
+        case 1011: return 'B';
+        case 1100: return 'C';
+        case 1101: return 'D';
+        case 1110: return 'E';
+        case 1111: return 'F';
+        default: return num;
+      }
     }
 
 

@@ -9,7 +9,7 @@ import * as outStyle from '../config/outStyles';
 
 class Decimal extends Component {
     state = {
-        number: 0,
+        number: '',
         binary: [],
         octal: [],
         hex: [],
@@ -61,15 +61,14 @@ class Decimal extends Component {
     }
 
     convert = () => {
-        if (this.state.number.includes('.')) {
+        let {number} = this.state;
+        if (number !=='' && number.includes('.')) {
             this.decToBin(this.handleMantissa)
-        } else {
+        } else if (number !== '') {
             this.decToBin(() => {});
             this.decimalToOctal();
             this.decimalToHeximal();
         }
-
-        console.log(this.state);
     }
 
     checkHex = (number) => {

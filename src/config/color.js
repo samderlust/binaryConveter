@@ -1,4 +1,5 @@
 export const primary = '#26A65B';
+export const primaryTran = 'rgba(38, 166, 91, 0.9)';
 export const gray = '#ecf0f1';
 export const ligntSeaGreen = '#2B9EB3';
 export const decColor = '#2B9EB3';
