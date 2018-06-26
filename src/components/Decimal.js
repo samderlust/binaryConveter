@@ -18,33 +18,32 @@ class Decimal extends Component {
 
     handleMantissa = () => {
         let { number } = this.state;
-        const binary = [...this.state.binary, '.'];
+        const binary2 = ['.'];
         number = number - Math.floor(number)
         let breakPoint = 0;
         while (number !== 0 && breakPoint !== 15 ) {
             number = number * 2;
             floorNum = Math.floor(number);
-            binary.push(floorNum);
+            binary2.push(floorNum);
             number = number - floorNum;
             breakPoint++;
             console.log(breakPoint);
         }
-        this.setState({binary});
+        return binary2;
     }
 
-    decToBin = (callback) => {
+    decToBin = () => {
         let bi = 0;
         let {number} = this.state;
         number = Math.floor(number);
-        const binary = [...this.state.binary]
+        const binary1 = [];
         while (number > 1) {
             bi = number % 2;
             number = Math.floor(number/2)
-            binary.unshift(bi)
+            binary1.unshift(bi)
         }
-        binary.unshift(number)
-
-        this.setState({binary}, () => callback())
+        binary1.unshift(number);
+        return binary1
     }
 
     decimalToOctal = () => {
@@ -57,17 +56,19 @@ class Decimal extends Component {
             octal.unshift(bi)
         }
         octal.unshift(number)
-        this.setState({octal})
+        return octal;
     }
 
     convert = () => {
         let {number} = this.state;
         if (number !=='' && number.includes('.')) {
-            this.decToBin(this.handleMantissa)
+            this.setState({ binary: [...this.decToBin(), ...this.handleMantissa()] })
         } else if (number !== '') {
-            this.decToBin(() => {});
-            this.decimalToOctal();
-            this.decimalToHeximal();
+            this.setState({
+                binary: this.decToBin(),
+                octal: this.decimalToOctal(),
+                hex: this.decimalToHeximal()
+            })   
         }
     }
 
@@ -94,8 +95,7 @@ class Decimal extends Component {
             hex.unshift(bi)
         }
         hex.unshift(this.checkHex(number))
-        this.setState({hex})
-        console.log(this.state)
+        return hex;
     }
 
     renderBin = (array) => {
@@ -105,23 +105,30 @@ class Decimal extends Component {
     render() {
         return (
             <ScrollView style={{ backgroundColor: color.gray, flex: 1 }} >
-                <Label>Binary</Label>
-                <View style={ outStyle.binaryStyle } >
-                    {this.renderBin('binary')}
+                <View style={outStyle.binaryContainer} >
+                    <Label>Binary</Label>
+                    <View style={ outStyle.showStyle } >  
+                        {this.renderBin('binary')}
+                    </View>
                 </View>
+                <View style={outStyle.octalContainer} >                
                 <Label>Octal</Label>
-                <View style={ outStyle.octalStyle } >
+                <View style={ outStyle.showStyle } >
                     {this.renderBin('octal')}
                 </View>
+                </View>
+
+                <View style={outStyle.hexContainer} >
                 <Label>Hex</Label>
-                <View style={ outStyle.hexStyle } >
+                <View style={ outStyle.showStyle } >
                     {this.renderBin('hex')}
+                </View>
                 </View>
                 
                 <Form>
-                    <Item>
+                    <Item >
                         <Input
-                            placeholder='Decimal Here..'
+                            placeholder='Type Here..'
                             keyboardType='numeric'
                             style={styles.inputField}
                             value={this.state.number}
@@ -150,7 +157,7 @@ const styles = {
     },
     inputField: {
         height: 60,
-        fontSize: 40,
+        fontSize: 20,
         marginTop: 10,
         marginBottom: 10,
         align: 'center'

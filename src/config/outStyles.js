@@ -1,37 +1,48 @@
 import * as color from '../config/color';
 
-export const binaryStyle = {
+export const showStyle = {
   flexDirection: 'row',
+  // minHeight: 100,
+  flex: 2,
+  width: '100%',
+  marginTop: 2,
+  justifyContent: 'center',
+  flexWrap: 'wrap',
+  alignItems: 'center',
+  borderTopWidth: 2,
+  paddingLeft: 5,
+  paddingRight: 5,
+  borderTopColor: 'rgba(106, 107, 109, .1)'
+};
+
+export const binaryContainer = {
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
   backgroundColor: color.binaryColor,
-  height: 70,
-  marginTop: 10,
-  justifyContent: 'center',
-  alignItems: 'center'
+  minHeight: 120
 };
 
-export const decimalStyle = {
-  flexDirection: 'row',
-  backgroundColor: color.decColor,
-  height: 70,
-  marginTop: 10,
+export const hexContainer = {
+  flexDirection: 'column',
   justifyContent: 'center',
-  alignItems: 'center'
-};
-
-export const octalStyle = {
-  flexDirection: 'row',
-  backgroundColor: color.octaColor,
-  height: 70,
-  marginTop: 10,
-  justifyContent: 'center',
-  alignItems: 'center'
-};
-
-export const hexStyle = {
-  flexDirection: 'row',
+  alignItems: 'center',
   backgroundColor: color.HexColor,
-  height: 70,
-  marginTop: 10,
+  minHeight: 120
+};
+
+export const octalContainer = {
+  flexDirection: 'column',
   justifyContent: 'center',
-  alignItems: 'center'
+  alignItems: 'center',
+  backgroundColor: color.octaColor,
+  minHeight: 120
+};
+
+export const deciContainer = {
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: color.octaColor,
+  minHeight: 120
 };

@@ -4,6 +4,7 @@ import {View} from 'react-native';
 import Decimal from '../components/Decimal';
 import Binary from '../components/Binary';
 import InfoModal from '../components/InfoModal';
+import FloatingPoint from '../components/FloatingPoint';
 
 import AppHeader from '../components/Header';
 
@@ -26,6 +27,9 @@ class Home extends Component {
           </Tab>
           <Tab heading='Binary'>
             <Binary />
+          </Tab>
+          <Tab heading='Floating Point'>
+            <FloatingPoint />
           </Tab>
         </Tabs>
         <InfoModal visible={this.state.visible} outPress={() => this.setState({visible: false})} />
